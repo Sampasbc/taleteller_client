@@ -1,15 +1,27 @@
 <script setup lang="ts">
-// import HelloWorld from './components/HelloWorld.vue'
+import { computed, ref } from "vue";
+import Dashboard from "./pages/Dashboard.vue";
+import Home from "./pages/Home.vue"
+import Error404 from "./pages/404.vue"
+
+const routes: Record<string, any> = {
+  "/": Home,
+  "/dashboard": Dashboard,
+}
+
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || Error404
+})
 </script>
 
 <template>
-  <main class="flex items-center justify-center bg-slate-900 h-[100dvh]">
-    <img
-      src="/public/TaleTeller_Logo.png"
-      alt="TaleTeller Logo"
-      class="size-96"
-    >
-  </main>
+  <component :is="currentView" />
 </template>
 
 <style scoped></style>
