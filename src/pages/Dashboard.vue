@@ -2,28 +2,32 @@
 import { computed, ref } from 'vue';
 import Error404 from "./404.vue"
 import Sidebar from '../components/Sidebar.vue';
-import HelloWorld from '../components/HelloWorld.vue';
+import Home from './Home.vue';
 
 const routes: Record<string, any> = {
-  "#/dashboard/hello": HelloWorld,
-  "/dashboard": "Dashboard",
+  "/": Sidebar,
+  "/home": Home
 }
 
-const currentPath = ref<string>(window.location.hash)
+const currentPath = ref<string>(window.location.pathname)
 
 window.addEventListener('hashchange', () => {
-  currentPath.value = window.location.hash
+  currentPath.value = window.location.pathname
+  console.log(currentPath.value)
 })
 
 const currentView = computed(() => {
-  return routes[currentPath.value.slice(1) || '/'] || Error404
+  return routes[currentPath.value || '/'] || Error404
 })
 </script>
 
 <template>
-  <main class="flex flex-col items-center justify-center bg-slate-900 h-[100dvh]">
+  <!-- <h1>{{ currentPath }}</h1> -->
+  <main class="flex flex-row items-center justify-center bg-slate-950 h-[100dvh]">
     <Sidebar/>
-    <component :is="currentView"/>
-    <h1>{{ currentPath }}</h1>
+    <component 
+    :is="currentView"
+    class="flex-1"
+    />
   </main>
 </template>

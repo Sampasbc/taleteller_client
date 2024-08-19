@@ -12,12 +12,15 @@ export default {
         "tt-secondary-shade": "#4c3101"
       },
       fontSize: {
-        "xs": "0.75rem",
-        "sm": "0.875rem",
-        "base": "1rem",
-        "lg": "1.125rem",
-        "xl": "1.25rem",
-        "2xl": "2rem"
+        "button": "1rem",
+        "body-sx": "0.75rem",
+        "body-sm": "0.875rem",
+        "body-md": "1rem",
+        "body-lg": "1.125rem",
+        "heading-xm": "1rem",
+        "heading-sm": "1.125rem",
+        "heading-md": "1.25rem",
+        "heading-lg": "2rem"
       },
       fontFamily: {
         "inter": "Inter"
