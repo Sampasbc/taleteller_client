@@ -16,7 +16,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
 
   <div
     id="sidebar"
-    :class="['flex flex-col justify-between items-center h-full py-12 bg-slate-900 border-r-2 border-r-slate-700',
+    :class="['flex flex-col justify-between items-center h-full pt-12 pb-6 bg-slate-900 border-r-2 border-r-slate-700',
     { 'w-80 px-6' : isOpen, 'w-20 px-3' : !isOpen }]">
     <div id="main_content" class="flex flex-col w-full space-y-12">
 
@@ -82,8 +82,8 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
     </div>
 
     <div id="footer" class="w-full text-center">
-      <p v-if="isOpen" class="text-slate-500 text-body-sx font-normal">© TateTeller 2024 - All rights reserved.</p>
-      <span class="text-slate-500 text-body-sx font-normal">v0.0.1</span>
+      <p v-if="isOpen" class="text-slate-500 text-[0.625rem] font-normal">© TateTeller 2024 - All rights reserved.</p>
+      <span class="text-slate-500 text-[0.625rem] font-normal">v0.0.1</span>
     </div>
   </div>
 
