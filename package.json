@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@primevue/themes": "^4.0.4",
     "lucide-vue-next": "^0.428.0",
+    "primevue": "^4.0.4",
     "vue": "^3.4.35"
   },
   "devDependencies": {

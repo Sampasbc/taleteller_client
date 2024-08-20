@@ -14,7 +14,7 @@ const routes: Record<string, any> = {
   "/encounter": Encounters,
   "/npc": NPCs,
 }
-
+ 
 const currentPath = ref<string>(window.location.hash)
 
 window.addEventListener('hashchange', () => {
@@ -31,12 +31,12 @@ const currentView = computed(() => {
 
 <template>
   <!-- <h1>{{ currentPath }}</h1> -->
-  <main class="flex flex-row items-center justify-center bg-slate-950 h-[100dvh]">
+  <main class="flex flex-row items-center justify-start h-[100dvh]">
     <Sidebar/>
-    <div class="flex-1 h-full">
+    <div class="flex justify-center h-full w-full">
       <component 
-      class="flex-1"
-      :is="currentView"
+        class="flex-1 max-w-[120rem]"
+        :is="currentView"
       />
     </div>
   </main>

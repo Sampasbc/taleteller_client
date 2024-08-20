@@ -9,7 +9,8 @@ export default {
       colors: {
         "tt-primary": "#995de7",
         "tt-secondary": "#e6cb68",
-        "tt-secondary-shade": "#4c3101"
+        "tt-secondary-shade": "#4c3101",
+        "tt-secondary-hover": "#bca34a",
       },
       fontSize: {
         "button": "1rem",
