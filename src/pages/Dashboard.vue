@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar.vue';
 import Home from './Home.vue';
 
 const routes: Record<string, any> = {
-  "/": Sidebar,
+  "/": Home,
   "/home": Home
 }
 
