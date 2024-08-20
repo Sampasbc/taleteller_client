@@ -2,7 +2,7 @@
 import { ArrowLeftFromLine, BookMarkedIcon, CompassIcon, DicesIcon, MenuIcon, UserCircle2Icon } from 'lucide-vue-next';
 import { ref } from 'vue';
 
-const isOpen = ref<boolean>(false)
+const isOpen = ref<boolean>(true)
 
 function handleToggleSidebar() {
   isOpen.value = !isOpen.value
@@ -91,6 +91,6 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
 
 <style scope>
   #sidebar {
-    transition: all 200ms ease;
+    transition: all 125ms ease;
   }
 </style>
