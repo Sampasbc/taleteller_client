@@ -4,21 +4,24 @@ import Error404 from "./404.vue"
 import Sidebar from '../components/Sidebar.vue';
 import Home from './Home.vue';
 
+// ROUTING
 const routes: Record<string, any> = {
   "/": Home,
-  "/home": Home
+  "/quest": Home
 }
 
-const currentPath = ref<string>(window.location.pathname)
+const currentPath = ref<string>(window.location.hash)
 
 window.addEventListener('hashchange', () => {
-  currentPath.value = window.location.pathname
+  currentPath.value = window.location.hash
   console.log(currentPath.value)
 })
 
 const currentView = computed(() => {
-  return routes[currentPath.value || '/'] || Error404
+  return routes[currentPath.value.slice(1) || '/'] || Error404
 })
+//
+
 </script>
 
 <template>
@@ -26,8 +29,8 @@ const currentView = computed(() => {
   <main class="flex flex-row items-center justify-center bg-slate-950 h-[100dvh]">
     <Sidebar/>
     <component 
-    :is="currentView"
     class="flex-1"
+    :is="currentView"
     />
   </main>
 </template>

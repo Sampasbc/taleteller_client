@@ -2,7 +2,7 @@
 import { ArrowLeftFromLine, BookMarkedIcon, CompassIcon, DicesIcon, MenuIcon, UserCircle2Icon } from 'lucide-vue-next';
 import { ref } from 'vue';
 
-const isOpen = ref<boolean>(true)
+const isOpen = ref<boolean>(false)
 
 function handleToggleSidebar() {
   isOpen.value = !isOpen.value
@@ -26,7 +26,6 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
           <img v-if="isOpen" src="../../public/TaleTeller_Logo.png" alt="">
           <img v-else src="../../public/TaleTeller_Icon.png" alt="">
         </div>
-
         <button @click="handleToggleSidebar" >
           <ArrowLeftFromLine v-if="isOpen" class="text-slate-200 hover:text-slate-400"/>
           <MenuIcon v-else class="text-slate-200 hover:text-slate-400"/>
@@ -45,7 +44,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
           <li id="links">
             <a
               :class="navItemStyle" 
-              href="/quest">
+              href="#/quest">
                <CompassIcon stroke-width="1"/>
                <span v-if="isOpen">Quests</span>
             </a>
@@ -54,7 +53,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
           <li id="links">
             <a
               :class="navItemStyle"
-              href="/encounter">
+              href="#/encounter">
                <DicesIcon stroke-width="1"/>
                <span v-if="isOpen">Encounters</span>
             </a>
@@ -63,7 +62,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
           <li id="links">
             <a
               :class="navItemStyle"
-              href="/npc">
+              href="#/npc">
                <UserCircle2Icon stroke-width="1"/>
                <span v-if="isOpen">NPCs</span>
             </a>
@@ -72,7 +71,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
           <li id="links">
             <a
               :class="navItemStyle" 
-              href="/campaign">
+              href="#/campaign">
                <BookMarkedIcon stroke-width="1"/>
                <span v-if="isOpen">Campaign Scenarios</span>
             </a>
