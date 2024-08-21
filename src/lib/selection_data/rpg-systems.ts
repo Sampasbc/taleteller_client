@@ -3,7 +3,7 @@ export const rpgSystemsData = [
     value: 'Any System'
   },
   {
-    value: 'Dungeons & Dragons'
+    value: 'Dungeons & Dragons 5e'
   },
   {
     value: 'Pathfinder'
