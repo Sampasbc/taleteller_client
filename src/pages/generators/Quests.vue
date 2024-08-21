@@ -1,17 +1,24 @@
 <script setup lang="ts">
 import { Settings2 } from 'lucide-vue-next';
 import { ref } from 'vue';
-import { partySizeItems, locationItems, dificultyItems, durationItems } from '../../lib/selection-options'
 import SelectionInput from '../../components/SelectionInput.vue'
+import { rpgSystemsData } from '../../lib/selection_data/rpg-systems'
+import { environmentsData } from '../../lib/selection_data/environments'
+import { rpgRacesData } from '../../lib/selection_data/rpg-races'
+import { partySizeData } from '../../lib/selection_data/party-size'
+import { dificultiesData } from '../../lib/selection_data/dificulties'
+import { durationsData } from '../../lib/selection_data/durations'
 
-const selectedPartySize = ref({...partySizeItems[0]})
-const selectedLocation = ref({...locationItems[0]})
-const selectedDificulty = ref({...dificultyItems[0]})
-const selectedDuration = ref({...durationItems[0]})
+const selectedRpgSystem = ref({...rpgSystemsData[0]})
+const selectedEnvironment = ref({...environmentsData[0]})
+const selectedPartySize = ref({...partySizeData[0]})
+const selectedDificulty = ref({...dificultiesData[0]})
+const selectedDuration = ref({...durationsData[0]})
+const selectedRace = ref({...rpgRacesData[0]})
 
 
-function updateLocation(newValue: any) {
-  selectedLocation.value = newValue
+function updateEnvironment(newValue: any) {
+  selectedEnvironment.value = newValue
 }
 
 function updatePartySize(newValue: any) {
@@ -51,19 +58,28 @@ function updateDuration(newValue: any) {
 
             <li>
               <SelectionInput
+                title="RPG System"
+                :initialValue="selectedRpgSystem"
+                :data="rpgSystemsData"
+                :updateController="updatePartySize"
+              />
+            </li>
+
+            <li>
+              <SelectionInput
                 title="Party Size"
                 :initialValue="selectedPartySize"
-                :data="partySizeItems"
+                :data="partySizeData"
                 :updateController="updatePartySize"
               />
             </li>
             
             <li>
               <SelectionInput
-                title="Location"
-                :initialValue="selectedLocation"
-                :data="locationItems"
-                :updateController="updateLocation"
+                title="Environment"
+                :initialValue="selectedEnvironment"
+                :data="environmentsData"
+                :updateController="updateEnvironment"
               />
               <!-- <span v-if="selectedLocation" class="text-slate-200">{{ selectedLocation.value }}</span> -->
             </li>
@@ -72,7 +88,7 @@ function updateDuration(newValue: any) {
               <SelectionInput
                 title="Dificulty"
                 :initialValue="selectedDificulty"
-                :data="dificultyItems"
+                :data="dificultiesData"
                 :updateController="updateDificulty"
               />
             </li>
@@ -81,7 +97,7 @@ function updateDuration(newValue: any) {
               <SelectionInput
                 title="Duration"
                 :initialValue="selectedDuration"
-                :data="durationItems"
+                :data="durationsData"
                 :updateController="updateDuration"
               />
             </li>

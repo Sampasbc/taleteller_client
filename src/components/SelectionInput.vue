@@ -24,7 +24,7 @@ import { ref, Ref } from 'vue';
 </script>
 
 <template>
-  <div class="flex flex-col space-y-3">
+  <div class="flex flex-col space-y-1">
     <span class="text-slate-200 text-heading-sm font-light" >{{title}}</span>
     <Select
       v-model="dataState"
