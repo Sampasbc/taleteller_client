@@ -38,13 +38,13 @@ import { ref, Ref } from 'vue';
     >
       <template #value="data">
           <div class="flex items-center">
-              <span v-if="data.value" class="text-heading-sm text-slate-600">{{ data.value.value }}</span>
+              <span v-if="data.value" class="text-heading-xm font-light text-slate-600">{{ data.value.value }}</span>
           </div>
       </template>
       <template #option="data">
           <div class="flex items-center space-x-3">
               <img v-if="data.option.url" :alt="data.option.value" :src="data.option.url" :class="`max-w-9 rounded`" />
-              <span class="text-heading-sm text-slate-600">{{ data.option.value }}</span>
+              <span class="text-heading-xm text-slate-600 font-light">{{ data.option.value }}</span>
           </div>
       </template>
     </Select>
