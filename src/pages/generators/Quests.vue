@@ -68,7 +68,7 @@ function updateDuration(newValue: any) {
         </div>
 
         <div id="parameters__content" class="flex-1">
-          <ul class="flex flex-col gap-6">
+          <ul class="flex flex-col gap-4">
 
             <li>
               <SelectionInput

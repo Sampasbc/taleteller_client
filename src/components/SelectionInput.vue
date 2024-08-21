@@ -25,7 +25,7 @@ import { ref, Ref } from 'vue';
 
 <template>
   <div class="flex flex-col space-y-1">
-    <span class="text-slate-200 text-heading-sm font-light" >{{title}}</span>
+    <span class="text-slate-200 text-heading-xm font-light" >{{title}}</span>
     <Select
       v-model="dataState"
       @update:modelValue="(newValue) => updateController(newValue)"
