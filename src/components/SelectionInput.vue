@@ -2,15 +2,15 @@
 import { ref, Ref } from 'vue';
 
   interface Data {
-    name: string,
-    url: string
+    value: string,
+    url?: string
   }
 
   const props = defineProps<{
     title: string
     updateController: (newValue: any) => void,
     data: Data[] | undefined,
-    initialValue: Ref,
+    initialValue: Ref | object,
     optionLabel?: string,
     placeholder?: string,
     isEditable?: boolean,

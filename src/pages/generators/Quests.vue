@@ -4,8 +4,8 @@ import { ref } from 'vue';
 import { partySizeItems, locationItems, dificultyItems, durationItems } from '../../lib/selection-options'
 import SelectionInput from '../../components/SelectionInput.vue'
 
-const selectedLocation = ref({...locationItems[0]})
 const selectedPartySize = ref({...partySizeItems[0]})
+const selectedLocation = ref({...locationItems[0]})
 const selectedDificulty = ref({...dificultyItems[0]})
 const selectedDuration = ref({...durationItems[0]})
 
@@ -52,7 +52,7 @@ function updateDuration(newValue: any) {
             <li>
               <SelectionInput
                 title="Party Size"
-                :initialValue="partySizeItems[0]"
+                :initialValue="selectedPartySize"
                 :data="partySizeItems"
                 :updateController="updatePartySize"
               />
@@ -61,7 +61,7 @@ function updateDuration(newValue: any) {
             <li>
               <SelectionInput
                 title="Location"
-                :initialValue="locationItems[0]"
+                :initialValue="selectedLocation"
                 :data="locationItems"
                 :updateController="updateLocation"
               />
@@ -71,7 +71,7 @@ function updateDuration(newValue: any) {
             <li>
               <SelectionInput
                 title="Dificulty"
-                :initialValue="dificultyItems[0]"
+                :initialValue="selectedDificulty"
                 :data="dificultyItems"
                 :updateController="updateDificulty"
               />
@@ -80,7 +80,7 @@ function updateDuration(newValue: any) {
             <li>
               <SelectionInput
                 title="Duration"
-                :initialValue="durationItems[0]"
+                :initialValue="selectedDuration"
                 :data="durationItems"
                 :updateController="updateDuration"
               />
