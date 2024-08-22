@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Settings2 } from 'lucide-vue-next';
+import { Loader2, Settings2 } from 'lucide-vue-next';
 import VueMarkdown from 'vue-markdown-render'
 import SelectionInput from '../../components/SelectionInput.vue'
 import { rpgSystemsData } from '../../lib/selection_data/rpg-systems'
@@ -20,6 +20,8 @@ const selectedPartySize = ref({...partySizeData[0]})
 const selectedDificulty = ref({...dificultiesData[0]})
 const selectedDuration = ref({...durationsData[0]})
 
+const isLoading = ref<boolean>(false);
+
 const returnedResponse = ref('')
 const mockResponse = ref("<h1>Quest: The Lost Temple of the Moon Goddess</h1> <p>The village of Oakwood, nestled at the edge of a vast and mysterious forest, has long revered the ancient Temple of Selûne. This sacred site, hidden deep within the woods, is said to contain powerful relics and artifacts that hold the secrets of the moon goddess.</p> <h2>Background</h2> <table> <tr> <th>Name</th> <th>HP</th> <th>Initiative</th> <th>Speed</th> </tr> <tr> <td>Moonforged Entity</td> <td>250</td> <td>+6</td> <td>30 ft.</td> </tr> <tr> <td>Lunar Rays (3)</td> <td>N/A</td> <td>+4 each</td> <td>-</td> </tr> </table> <p>For generations, the villagers have maintained a delicate balance with the temple's guardians, a reclusive order of druids sworn to protect the temple and its treasures. However, as the years passed, strange occurrences began to plague Oakwood: crops withering, livestock falling ill, and the villagers themselves becoming increasingly restless.</p> <p>The villagers believe that the source of these troubles lies within the Temple of Selûne, where a dark force has begun to stir. They seek brave adventurers to explore the temple, put an end to whatever evil is brewing, and restore balance to their beloved village.</p> <h2>Quest Objectives</h2> <ul> <li>Investigate the source of the troubles in Oakwood and determine its connection to the Temple of Selûne.</li> <li>Explore the lost temple, navigating its treacherous traps and overcoming any challenges that lie within.</li> <li>Find a way to stop the dark force growing in power within the temple and restore peace to the village.</li> </ul> <h2>Reward</h2> <p>The people of Oakwood are willing to offer a generous reward to those who can resolve this issue:</p> <ul> <li>A magical amulet imbued with the power of Selûne, granting the wearer resistance to darkness and illusions.</li> <li>Access to the village's treasured library, containing ancient texts and forbidden knowledge.</li> <li>The gratitude of the villagers, who will forever remain in debt to those who have saved them from destruction.</li> </ul> <h2>Encounter: The Temple Entrance</h2> <p>A massive stone door adorned with intricate carvings and a glowing crescent moon welcomes adventurers to the entrance of the lost temple. As they approach, the air grows thick with an otherworldly energy.</p> <h3><strong>Temple Entrance Encounter (Any Size)</strong></h3> <table> <tr> <th>Name</th> <th>HP</th> <th>Initiative</th> <th>Speed</th> </tr> <tr> <td>Guardian Treant</td> <td>150</td> <td>+5</td> <td>30 ft.</td> </tr> <tr> <td>Moonwhisper Wraiths (3)</td> <td>50 each</td> <td>+2 each</td> <td>20 ft.</td> </tr> </table> <p><i>The Guardian Treant is a sentient tree with abilities tied to the lunar cycle. It seeks to protect the temple and its secrets from intruders. The Moonwhisper Wraiths are ethereal beings drawn to the moon's power, seeking to aid or hinder adventurers depending on their intentions.</i></p> <h2>Encounter: The Hall of Whispers</h2> <p>A labyrinthine corridor filled with whispering echoes and cryptic messages leads adventurers deeper into the temple. As they navigate this maze, they begin to uncover clues about the dark force growing in power within the temple.</p> <h3><strong>The Hall of Whispers Encounter (Any Size)</strong></h3> <table> <tr> <th>Name</th> <th>HP</th> <th>Initiative</th> <th>Speed</th> </tr> <tr> <td>Spectral Scribes (5)</td> <td>20 each</td> <td>+3 each</td> <td>10 ft.</td> </tr> <tr> <td>Shadowy Illusions</td> <td>N/A</td> <td>+1</td> <td>-</td> </tr> </table> <p><i>The Spectral Scribes are ghostly messengers, each carrying a unique and cryptic message that holds the key to understanding the temple's secrets. The Shadowy Illusions appear as dark, formless shapes that can deceive even the most perceptive adventurers.</i></p> <h2>Encounter: The Heart of the Temple</h2> <p>The final chamber of the temple contains a glowing crystal surrounded by an aura of darkness and malevolent energy. A powerful entity, born from the very essence of the moon goddess's power, has taken residence within this crystal.</p> <h3><strong>The Heart of the Temple Encounter (Any Size)</strong></h3> <table> <tr> <th>Name</th> <th>HP</th> <th>Initiative</th> <th>Speed</th> </tr> <tr> <td>Moonforged Entity</td> <td>250</td> <td>+6</td> <td>30 ft.</td> </tr> <tr> <td>Lunar Rays (3)</td> <td>N/A</td> <td>+4 each</td> <td>-</td> </tr> </table> <p><i>The Moonforged Entity is a powerful, otherworldly being born from the moon's power. It seeks to reclaim its lost essence and bring balance to the temple and the world beyond.</i></p> <h2>Additional Notes</h2> <p>As adventurers delve deeper into the temple, they will uncover clues about an ancient pact between the druids and a powerful organization that manipulated the village of Oakwood for their own gain. This revelation can lead to further adventures and complications if not handled carefully.</p> <p>The Temple of Selûne holds many secrets and mysteries waiting to be uncovered by brave adventurers willing to explore its depths.</p>")
 
@@ -29,6 +31,9 @@ const markdownOptions = {
 
 async function generateQuest() {
 
+  returnedResponse.value = ''
+  isLoading.value = true;
+  
   try{
     const response = await api.post('/quest/generate', {
       rpgSystem: selectedRpgSystem.value.value,
@@ -39,7 +44,7 @@ async function generateQuest() {
       dificulty: selectedDificulty.value.value,
       duration: selectedDuration.value.value
     })
-
+    
     returnedResponse.value = response.data.response
     console.log(response.data)
     if(response.status !== 200) {
@@ -49,6 +54,7 @@ async function generateQuest() {
     console.log(error)
     window.alert(error)
   } finally {
+    isLoading.value = false;
   }
 
 }
@@ -102,7 +108,7 @@ function updateDuration(newValue: any) {
           <Settings2 stroke-width="1"/>
         </div>
 
-        <div id="parameters__content" class="flex-1">
+        <div id="parameters__content" :class="['flex-1 transition-opacity', { 'opacity-50 hover:opacity-100':returnedResponse }]">
           <ul class="flex flex-col gap-4">
 
             <li>
@@ -174,7 +180,12 @@ function updateDuration(newValue: any) {
         </div>
 
         <div id="parameters__button" class="text-right">
-          <button @click="generateQuest" class="bg-tt-secondary text-tt-secondary-shade rounded text-button py-3 px-6 hover:bg-tt-secondary-hover">
+          <button
+            @click="generateQuest"
+            :disabled="isLoading"
+            :class="['bg-tt-secondary text-tt-secondary-shade rounded text-button py-3 px-6 hover:bg-tt-secondary-hover',
+              {'bg-tt-secondary-hover text-tt-secondary-shade hover:bg-tt-secondary-hover': isLoading}
+            ]">
             Generate Quest
           </button>
         </div>
@@ -182,9 +193,17 @@ function updateDuration(newValue: any) {
       </div>
     </div>
 
-    <div id="generated-content" class="text-slate-200 overflow-auto">
+    <div id="generated-content"
+      :class="['flex-1 flex flex-col text-slate-200 overflow-auto', {'justify-center items-center': !returnedResponse}]"
+    >
+
+      <div v-if="isLoading" class="">
+        <Loader2 stroke-width="0.4" class="size-20 loading"/>
+      </div>
+
       <!-- <div v-html="returnedResponse"></div> -->
-      <vue-markdown :source="returnedResponse" :options="markdownOptions"/>
+      <vue-markdown v-if="returnedResponse" :source="returnedResponse" :options="markdownOptions"/>
+      <!-- <vue-markdown v-if="mockResponse" :source="mockResponse" :options="markdownOptions"/> -->
       <p class="text-slate-200">
       </p>
     </div>
@@ -230,11 +249,11 @@ function updateDuration(newValue: any) {
     margin: 0rem 0 1rem;
   }
   
-    ::v-deep #generated-content h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      margin: 1rem 0 1rem;
-    }
+  ::v-deep #generated-content h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 1rem 0 1rem;
+  }
 
   ::v-deep #generated-content p {
     margin: .5rem 0;
@@ -243,12 +262,9 @@ function updateDuration(newValue: any) {
   }
 
   ::v-deep #generated-content table {
-    /* color: #cbd5e1;
-    margin: 2rem 0;
-    border: solid 1px #94a3b8;
-    border-radius: 10rem; */
-
+    
     /* border-collapse: separate;*/
+    margin: 2rem 0;
     border-spacing: 0; /* Removes spacing between cells */
     border-radius: 4px; /* Adjust radius as needed */
     overflow: hidden; /* Ensures content inside respects border radius */

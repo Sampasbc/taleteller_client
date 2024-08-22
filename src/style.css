@@ -7,3 +7,17 @@ body {
   background-color: #020617;
   /* background-color: #d7d7d7; */
 }
+
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 359deg;
+  }
+}
+
+.loading {
+  animation: spin 1500ms linear infinite;
+}
