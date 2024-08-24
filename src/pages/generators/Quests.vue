@@ -5,6 +5,7 @@ import VueMarkdown from 'vue-markdown-render'
 import SelectionInput from '../../components/SelectionInput.vue'
 import Loader from '../../components/Loader.vue';
 import GeneratedContentOptions from '../../components/GeneratedContentOptions.vue';
+import NoContent from '../../components/NoContent.vue';
 import { rpgSystemsData } from '../../lib/selection_data/rpg-systems'
 import { locationsData } from '../../lib/selection_data/locations'
 import { environmentsData } from '../../lib/selection_data/environments'
@@ -60,7 +61,6 @@ async function generateQuest() {
   }
 
 }
-
 
 function updateRpgSystem(newValue: any) {
   selectedRpgSystem.value = newValue
@@ -199,7 +199,7 @@ function updateDuration(newValue: any) {
         {'justify-center items-center': !returnedResponse || isLoading}]"
       >
   
-        <div v-if="isLoading" class="">
+        <div v-if="isLoading" class="absolute top-1/2 -translate-y-1/2">
           <Loader/>
         </div>
 
@@ -207,18 +207,21 @@ function updateDuration(newValue: any) {
           <GeneratedContentOptions/>
         </div>
   
-        <div class="fade-in pr-3 overflow-auto">
-          <vue-markdown v-if="returnedResponse && !isLoading"
+        <div v-if="returnedResponse && !isLoading" class="fade-in pr-3 overflow-auto">
+          <vue-markdown
             :source="returnedResponse"
             :options="markdownOptions"
           />
+        </div>
+
+        <div v-if="!returnedResponse && !isLoading" class="fade-in absolute top-1/2 -translate-y-1/2">
+          <NoContent/>
         </div>
   
       </div>
 
     </div>
 
-    
   </div>
   
 </template>
