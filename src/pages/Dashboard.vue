@@ -31,7 +31,7 @@ const currentView = computed(() => {
 
 <template>
   <!-- <h1>{{ currentPath }}</h1> -->
-  <main class="flex flex-row items-center justify-start h-[100dvh]">
+  <main class="flex flex-row items-center justify-start h-[100dvh] overflow-hidden">
     <Sidebar/>
     <div class="flex justify-center h-full w-full">
       <component 
