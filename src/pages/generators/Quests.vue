@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Loader2, Settings2 } from 'lucide-vue-next';
+import { Settings2 } from 'lucide-vue-next';
 import VueMarkdown from 'vue-markdown-render'
 import SelectionInput from '../../components/SelectionInput.vue'
 import Loader from '../../components/Loader.vue';
+import GeneratedContentOptions from '../../components/GeneratedContentOptions.vue';
 import { rpgSystemsData } from '../../lib/selection_data/rpg-systems'
 import { locationsData } from '../../lib/selection_data/locations'
 import { environmentsData } from '../../lib/selection_data/environments'
@@ -93,16 +94,16 @@ function updateDuration(newValue: any) {
 
 <template>
 
-  <div id="quest-generator" class="flex space-x-6 px-6 pb-6 pt-12">
+  <div id="quest-generator" class="flex flex-col max-h-full px-6 pb-6 pt-12 space-y-12">
 
-    <div id="settings" class="flex flex-col gap-12 min-w-80">
+    <div id="title" class="space-y-1">
+      <h2 class="text-heading-lg font-medium text-slate-200">Quest Generator</h2>
+      <span class="text-heading-xm font-normal text-slate-500">Create incredible quests on the fly.</span>
+    </div>
 
-      <div id="title" class="space-y-1">
-        <h2 class="text-heading-lg font-medium text-slate-200">Quest Generator</h2>
-        <span class="text-heading-xm font-normal text-slate-500">Create incredible quests on the fly.</span>
-      </div>
+    <div id="main-content" class="flex space-x-6 overflow-hidden">
 
-      <div id="parameters" class="flex flex-col flex-1 justify-between space-y-6">
+      <div id="parameters" class="flex flex-col flex-1 space-y-6 max-w-72">
 
         <div id="parameters__title" class="flex space-x-2 items-center text-slate-200">
           <span class="text-heading-md font-medium">Parameters</span>
@@ -180,7 +181,7 @@ function updateDuration(newValue: any) {
 
         </div>
 
-        <div id="parameters__button" class="text-right">
+        <div id="parameters__button" class="text-right mt-auto">
           <button
             @click="generateQuest"
             :disabled="isLoading"
@@ -192,24 +193,31 @@ function updateDuration(newValue: any) {
         </div>
 
       </div>
-    </div>
+  
+      <div id="generated-content"
+        :class="['flex-1 flex flex-col space-y-3 text-slate-200',
+        {'justify-center items-center': !returnedResponse || isLoading}]"
+      >
+  
+        <div v-if="isLoading" class="">
+          <Loader/>
+        </div>
 
-    <div id="generated-content"
-      :class="['flex-1 flex flex-col text-slate-200 pr-3 overflow-auto scroll-smooth,', {'justify-center items-center': !returnedResponse || isLoading}]"
-    >
-
-      <div v-if="isLoading" class="">
-        <Loader/>
+        <div v-if="!isLoading && returnedResponse" class="ml-auto pt-1 pr-3 fade-in">
+          <GeneratedContentOptions/>
+        </div>
+  
+        <div class="fade-in pr-3 overflow-auto">
+          <vue-markdown v-if="returnedResponse && !isLoading"
+            :source="returnedResponse"
+            :options="markdownOptions"
+          />
+        </div>
+  
       </div>
 
-      <!-- <div v-html="returnedResponse"></div> -->
-      <vue-markdown v-if="returnedResponse && !isLoading"
-        :source="returnedResponse"
-        :options="markdownOptions"
-        class="fade-in"
-      />
-
     </div>
+
     
   </div>
   
@@ -224,6 +232,7 @@ function updateDuration(newValue: any) {
     font-size: 1.8rem;
     font-weight: 600;
     margin: 0;
+    color: #e2e8f0;
   }
 
   ::v-deep #generated-content h1::after {
