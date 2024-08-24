@@ -25,7 +25,7 @@ const selectedDuration = ref({...durationsData[0]})
 
 const isLoading = ref<boolean>(false);
 
-const returnedResponse = ref(mockResponse)
+const returnedResponse = ref('')
 
 const markdownOptions = {
   html: true
@@ -101,7 +101,7 @@ function updateDuration(newValue: any) {
       <span class="text-heading-xm font-normal text-slate-500">Create incredible quests on the fly.</span>
     </div>
 
-    <div id="main-content" class="flex space-x-6 overflow-hidden">
+    <div id="main-content" class="flex h-full space-x-6 overflow-hidden">
 
       <div id="parameters" class="flex flex-col flex-1 space-y-6 max-w-72">
 
