@@ -17,7 +17,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
   <div
     id="sidebar"
     :class="['flex flex-col justify-between items-center h-full pt-12 pb-6 bg-slate-900 border-r-2 border-r-slate-700',
-    { 'w-80 px-6' : isOpen, 'w-20 px-3' : !isOpen }]">
+    { 'w-72 min-w-72 px-6' : isOpen, 'w-20 min-w-20 px-3' : !isOpen }]">
     <div id="main_content" class="flex flex-col w-full space-y-12">
 
       <div id="heading" :class="['flex items-start justify-between', { 'flex-col items-center space-y-6': !isOpen}]">
@@ -46,7 +46,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
               :class="navItemStyle" 
               href="#/quest">
                <CompassIcon stroke-width="1"/>
-               <span v-if="isOpen">Quests</span>
+               <span v-if="isOpen" class="truncate">Quests</span>
             </a>
           </li>
 
@@ -55,7 +55,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
               :class="navItemStyle"
               href="#/encounter">
                <DicesIcon stroke-width="1"/>
-               <span v-if="isOpen">Encounters</span>
+               <span v-if="isOpen" class="truncate">Encounters</span>
             </a>
           </li>
 
@@ -64,7 +64,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
               :class="navItemStyle"
               href="#/npc">
                <UserCircle2Icon stroke-width="1"/>
-               <span v-if="isOpen">NPCs</span>
+               <span v-if="isOpen" class="truncate">NPCs</span>
             </a>
           </li>
 
@@ -73,7 +73,7 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
               :class="navItemStyle" 
               href="#/campaign">
                <BookMarkedIcon stroke-width="1"/>
-               <span v-if="isOpen">Campaign Scenarios</span>
+               <span v-if="isOpen" class="truncate">Campaign Scenarios</span>
             </a>
           </li>
 
@@ -91,6 +91,6 @@ const navItemStyle = 'flex gap-2 items-center text-slate-300 text-heading-sm fon
 
 <style scope>
   #sidebar {
-    transition: all 125ms ease;
+    transition: all 100ms ease;
   }
 </style>
