@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { Loader2, Settings2 } from 'lucide-vue-next';
 import VueMarkdown from 'vue-markdown-render'
 import SelectionInput from '../../components/SelectionInput.vue'
+import Loader from '../../components/Loader.vue';
 import { rpgSystemsData } from '../../lib/selection_data/rpg-systems'
 import { locationsData } from '../../lib/selection_data/locations'
 import { environmentsData } from '../../lib/selection_data/environments'
@@ -198,13 +199,16 @@ function updateDuration(newValue: any) {
     >
 
       <div v-if="isLoading" class="">
-        <Loader2 stroke-width="0.4" class="size-20 loading"/>
+        <Loader/>
       </div>
 
       <!-- <div v-html="returnedResponse"></div> -->
-      <vue-markdown v-if="returnedResponse && !isLoading" :source="returnedResponse" :options="markdownOptions"/>
-      <p class="text-slate-200">
-      </p>
+      <vue-markdown v-if="returnedResponse && !isLoading"
+        :source="returnedResponse"
+        :options="markdownOptions"
+        class="fade-in"
+      />
+
     </div>
     
   </div>
