@@ -1,6 +1,6 @@
 export const professionsData = [
   {
-    value: 'Any Profession'
+    value: 'Any Class/Profession'
   },
   // Dungeons & Dragons (Fantasy)
   {
