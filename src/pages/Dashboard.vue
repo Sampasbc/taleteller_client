@@ -6,13 +6,15 @@ import Home from './Home.vue';
 import Quests from './generators/Quests.vue';
 import Encounters from './generators/Encounters.vue';
 import NPCs from './generators/NPCs.vue'
+import Campaigns from './generators/Campaigns.vue';
 
 // ROUTING
 const routes: Record<string, any> = {
-  "/": Home,
+  "/": Quests,
   "/quest": Quests,
   "/encounter": Encounters,
   "/npc": NPCs,
+  "/campaign": Campaigns,
 }
  
 const currentPath = ref<string>(window.location.hash)
