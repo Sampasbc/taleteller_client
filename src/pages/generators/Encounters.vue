@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Settings2 } from 'lucide-vue-next';
+import { Settings2, DicesIcon } from 'lucide-vue-next';
 import VueMarkdown from 'vue-markdown-render'
 import SelectionInput from '../../components/SelectionInput.vue'
 import Loader from '../../components/Loader.vue';
@@ -97,7 +97,10 @@ function updateDuration(newValue: any) {
   <div id="quest-generator" class="flex flex-col max-h-full px-6 pb-6 pt-12 space-y-12">
 
     <div id="title" class="space-y-1">
-      <h2 class="text-heading-lg font-medium text-slate-200">Encounter Generator</h2>
+      <div class="flex items-center space-x-3 text-slate-200">
+        <DicesIcon stroke-width="2" :size="40"/>
+        <h2 class="text-heading-lg font-medium">Encounter Generator</h2>
+      </div>
       <span class="text-heading-xm font-normal text-slate-500">Create incredible quests on the fly.</span>
     </div>
 
