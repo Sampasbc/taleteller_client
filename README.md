@@ -8,7 +8,7 @@
 
 ### Introduction
 
-TaleTeller is a dynamic tool designed to assist Dungeon Masters (DMs) in creating engaging tabletop RPG adventures. Whether you’re generating quests, encounters, NPCs, or entire campaign scenarios, TaleTeller simplifies the creative process, allowing you to focus on storytelling and gameplay.
+TaleTeller is a dynamic tool designed to assist Dungeon Masters (DMs) create engaging tabletop RPG adventures. Whether you’re generating quests, encounters, NPCs, or entire campaign scenarios, TaleTeller simplifies the creative process, allowing you to focus on storytelling and gameplay.
 
 ### Features
 
@@ -20,6 +20,12 @@ Simple and intuitive UI for generating content.
 Real-time display of generated quests, encounters, NPCs, and scenarios.
 - Customisable Inputs:
 Users can specify details like location, race, quest level, and RPG System to tailor generated content.
+
+### Examples
+
+#### Quest Generator
+<img src="public/readme assets/Screenshot 2024-08-24 at 15.09.53.png" alt="Example 01" width="720"/>
+<img src="public/readme assets/Screenshot 2024-08-24 at 15.10.24.png" alt="Example 01" width="720"/>
 
 ## License
 
