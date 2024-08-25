@@ -1,6 +1,6 @@
 ![Vue](https://img.shields.io/badge/Vue-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white) ![Ollama](https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logoColor=white) ![Llama](https://img.shields.io/badge/Llama3.1-FF6F61?style=for-the-badge&logo=llama&logoColor=white)
 
-![Logo](https://raw.githubusercontent.com/Sampasbc/taleteller_client/main/public/TaleTeller_Logo.png?token=GHSAT0AAAAAACUT5KXFJTXH5MPTEA7ZNTQ2ZWK76OQ)
+<img src="public/TaleTeller_Logo.png" alt="TaleTeller Logo" width="360"/>
 
 # TaleTeller
 #### _One journey, Infinite tales_
