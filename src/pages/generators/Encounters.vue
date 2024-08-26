@@ -32,6 +32,13 @@ const markdownOptions = {
   html: true
 }
 
+// rpgSystem: z.string(),
+// encounterType: z.string(),
+// encounterLocation: z.string(),
+// regionRace: z.string(),
+// partySize: z.string(),
+// dificulty: z.string()
+
 async function generateQuest() {
 
   // returnedResponse.value = ''
@@ -101,7 +108,7 @@ function updateDuration(newValue: any) {
         <DicesIcon stroke-width="2" :size="40"/>
         <h2 class="text-heading-lg font-medium">Encounter Generator</h2>
       </div>
-      <span class="text-heading-xm font-normal text-slate-500">Create incredible quests on the fly.</span>
+      <span class="text-heading-xm font-normal text-slate-500">Forge thrilling encounters in seconds.</span>
     </div>
 
     <div id="main-content" class="flex h-full space-x-6 overflow-hidden">
