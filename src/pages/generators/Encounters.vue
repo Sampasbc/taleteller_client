@@ -7,6 +7,7 @@ import Loader from '../../components/Loader.vue';
 import GeneratedContentOptions from '../../components/GeneratedContentOptions.vue';
 import NoContent from '../../components/NoContent.vue';
 import { rpgSystemsData } from '../../lib/selection_data/rpg-systems'
+import { enctounterTypesData } from '../../lib/selection_data/encounter-types';
 import { locationsData } from '../../lib/selection_data/locations'
 import { environmentsData } from '../../lib/selection_data/environments'
 import { rpgRacesData } from '../../lib/selection_data/rpg-races'
@@ -17,12 +18,11 @@ import { api } from '../../lib/axios';
 import { mockResponse } from '../../lib/mockResponse'
 
 const selectedRpgSystem = ref({...rpgSystemsData[0]})
+const selectedType = ref({...enctounterTypesData[0]})
 const selectedLocation = ref({...locationsData[0]})
-const selectedEnvironment = ref({...environmentsData[0]})
 const selectedRace = ref({...rpgRacesData[0]})
 const selectedPartySize = ref({...partySizeData[0]})
 const selectedDificulty = ref({...dificultiesData[0]})
-const selectedDuration = ref({...durationsData[0]})
 
 const isLoading = ref<boolean>(false);
 
@@ -32,27 +32,19 @@ const markdownOptions = {
   html: true
 }
 
-// rpgSystem: z.string(),
-// encounterType: z.string(),
-// encounterLocation: z.string(),
-// regionRace: z.string(),
-// partySize: z.string(),
-// dificulty: z.string()
-
 async function generateQuest() {
 
   // returnedResponse.value = ''
   isLoading.value = true;
   
   try{
-    const response = await api.post('/quest/generate', {
+    const response = await api.post('/encounter/generate', {
       rpgSystem: selectedRpgSystem.value.value,
-      giverLocation : selectedLocation.value.value,
-      questLocation: selectedEnvironment.value.value,
+      encounterType: selectedType.value.value,
+      encounterLocation : selectedLocation.value.value,
       regionRace: selectedRace.value.value,
       partySize: selectedPartySize.value.value,
       dificulty: selectedDificulty.value.value,
-      duration: selectedDuration.value.value
     })
     
     returnedResponse.value = response.data.response
@@ -73,12 +65,12 @@ function updateRpgSystem(newValue: any) {
   selectedRpgSystem.value = newValue
 }
 
-function updateLocation(newValue: any) {
-  selectedLocation.value = newValue
+function updateType(newValue: any) {
+  selectedType.value = newValue
 }
 
-function updateEnvironment(newValue: any) {
-  selectedEnvironment.value = newValue
+function updateLocation(newValue: any) {
+  selectedLocation.value = newValue
 }
 
 function updateRace(newValue: any) {
@@ -91,10 +83,6 @@ function updatePartySize(newValue: any) {
 
 function updateDificulty(newValue: any) {
   selectedDificulty.value = newValue
-}
-
-function updateDuration(newValue: any) {
-  selectedDuration.value = newValue
 }
 
 </script>
@@ -134,21 +122,20 @@ function updateDuration(newValue: any) {
 
             <li>
               <SelectionInput
-                title="Quest Giver Location"
+                title="Encounter Type"
+                :initialValue="selectedType"
+                :data="enctounterTypesData"
+                :updateController="updateType"
+              />
+            </li>
+
+            <li>
+              <SelectionInput
+                title="Location"
                 :initialValue="selectedLocation"
                 :data="locationsData"
                 :updateController="updateLocation"
               />
-            </li>
-            
-            <li>
-              <SelectionInput
-                title="Quest Environment"
-                :initialValue="selectedEnvironment"
-                :data="environmentsData"
-                :updateController="updateEnvironment"
-              />
-              <!-- <span v-if="selectedLocation" class="text-slate-200">{{ selectedLocation.value }}</span> -->
             </li>
 
             <li>
@@ -175,15 +162,6 @@ function updateDuration(newValue: any) {
                 :initialValue="selectedDificulty"
                 :data="dificultiesData"
                 :updateController="updateDificulty"
-              />
-            </li>
-            
-            <li>
-              <SelectionInput
-                title="Duration"
-                :initialValue="selectedDuration"
-                :data="durationsData"
-                :updateController="updateDuration"
               />
             </li>
 
